@@ -4,14 +4,17 @@
       <div class="col-md-12 post_images_container">
         <div class="post-item">
 
-
-
         <div class="post-meta-top">
           <div class="post-image">
             <%= attachment_image_tag @post_image, :image %>
           </div>
         </div>
+
+
         <div class="post-content">
+        
+            <%= attachment_image_tag @post_image.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size: "100x100", class: "img-circle pull-left profile-img" %>
+
             <h2 class="post-title"><%= @post_image.shop_name %></h2>
             <ul class="meta-info-cells v4 float-wrapper">
               <li>
@@ -44,7 +47,11 @@
                 <i class="fa fa-comment"></i>
                 <a href="#comments"><%= @post_image.post_comments.count %></a>
               </li>
+              <li>
+              <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+              </li>
             </ul>
+
             <div class="post-content-inner mt-20">
                 <p><%= @post_image.caption %></p>
             </div>
@@ -64,8 +71,8 @@
                   <div class="comment-body bb">
                     <div class="comment-avatar">
                       <div class="avatar">
-                          <%= image_tag('sample-author1.jpg', style: "width: 60px; height: 60px;") %>
-                        </div>
+                        <%= attachment_image_tag post_comment.user, :profile_image, size: "100x100", fallback: "no_image.jpg" %>
+                      </div>
                     </div>
                     <div class="comment-text">
                       <div class="comment-author clearfix">
